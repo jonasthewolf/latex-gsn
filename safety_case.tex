@@ -1,0 +1,117 @@
+\documentclass[margin=5mm, tikz]{standalone}
+
+\usepackage{fontspec}
+
+\setmainfont[Ligatures=TeX]{Arial}
+
+\usetikzlibrary{graphs, graphdrawing, shapes.geometric, shapes.misc, shapes.multipart, positioning, arrows.meta}
+
+\begin{document} 
+
+\begin{tikzpicture}[
+    node distance=1cm,
+    %on grid,
+    align=left,
+    arrows={[scale=3]},
+    %auto,
+    goal/.style={
+        rectangle,
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=6cm,
+        inner sep=7mm,
+        outer sep=0mm,
+        very thick,
+        draw=black,
+        append after command={
+            (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+        }
+    },
+    strategy/.style={
+        trapezium, 
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=6cm,
+        inner sep=7mm,
+        outer sep=0mm,
+        trapezium left angle=80, 
+        trapezium right angle=100,
+        very thick,
+        draw=black,
+        append after command={
+            (\tikzlastnode.top left corner) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+        }
+    },
+    solution/.style={
+        circle,
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=4cm,
+        inner sep=2mm,
+        outer sep=0mm,
+        very thick,
+        draw=black,
+        append after command={
+            (\tikzlastnode.north west) node [below right] {\textbf{\tikzlastnode}}
+        }
+    },
+    context/.style={
+        rounded rectangle,
+        rounded rectangle arc length=90,
+        rounded corners=3mm,
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=6cm,
+        inner sep=7mm,
+        outer sep=0mm,
+        very thick,
+        draw=black,
+        append after command={
+            (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+        }
+    },
+    assumption/.style={
+        ellipse,
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=6cm,
+        inner sep=7mm,
+        outer sep=0mm,
+        very thick,
+        draw=black,
+        label={[xshift=5mm]south east:\textbf{A}},
+        append after command={
+            (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+        }
+    },
+    justification/.style={
+        ellipse,
+        minimum width=3cm,
+        minimum height=1.8cm,
+        text width=6cm,
+        inner sep=7mm,
+        outer sep=0mm,
+        very thick,
+        draw=black,
+        label={[xshift=5mm]south east:\textbf{J}},
+        append after command={
+            (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+        }
+    }
+    ]
+
+    \node [goal]                   (G1) {Control System is acceptably safe to operate};
+    \node [strategy, below=of G1]  (S1) {Strategy}
+        edge[Latex-] (G1);
+    \node [context, right=of G1]   (C1) {Context}
+        edge[{Triangle[open]}-]    (G1);
+    \node [solution, below=of S1]  (Sn1) {Solution}
+        edge[Latex-] (S1);
+    \node [assumption, below=of S1, right=of Sn1] (A1) {Assumption\\asDSADadAJDKHSAGFKHAGSDKHFSAGKFDAKSFKHSAGF\\asdfasdfasdfsafsadfads}
+        edge[Latex-] (S1);
+    \node [justification, below=of S1, left=of Sn1] (J1) {This is a long justification}
+        edge[Latex-] (S1);
+
+\end{tikzpicture}
+
+\end{document}
