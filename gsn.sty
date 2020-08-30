@@ -1,0 +1,110 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{gsn}[2020/08/30 Goal Structuring Notation]
+
+
+
+\RequirePackage{tikz}
+\usetikzlibrary{graphs, graphdrawing, shapes.geometric, shapes.misc, shapes.multipart, positioning, arrows.meta}
+
+\tikzset{
+
+goal/.style={
+    rectangle,
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=6cm,
+    inner sep=7mm,
+    outer sep=0mm,
+    very thick,
+    draw=black,
+    append after command={
+        (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+    }
+},
+strategy/.style={
+    trapezium, 
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=6cm,
+    inner sep=7mm,
+    outer sep=0mm,
+    trapezium left angle=80, 
+    trapezium right angle=100,
+    very thick,
+    draw=black,
+    append after command={
+        (\tikzlastnode.top left corner) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+    }
+},
+solution/.style={
+    circle,
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=4cm,
+    inner sep=2mm,
+    outer sep=0mm,
+    very thick,
+    draw=black,
+    append after command={
+        (\tikzlastnode.north west) node [below right] {\textbf{\tikzlastnode}}
+    }
+},
+context/.style={
+    rounded rectangle,
+    rounded rectangle arc length=90,
+    rounded corners=3mm,
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=6cm,
+    inner sep=7mm,
+    outer sep=0mm,
+    very thick,
+    draw=black,
+    append after command={
+        (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+    }
+},
+assumption/.style={
+    ellipse,
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=6cm,
+    inner sep=7mm,
+    outer sep=0mm,
+    very thick,
+    draw=black,
+    label={[xshift=5mm]south east:\textbf{A}},
+    append after command={
+        (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+    }
+},
+justification/.style={
+    ellipse,
+    minimum width=3cm,
+    minimum height=1.8cm,
+    text width=6cm,
+    inner sep=7mm,
+    outer sep=0mm,
+    very thick,
+    draw=black,
+    label={[xshift=5mm]south east:\textbf{J}},
+    append after command={
+        (\tikzlastnode.north west) node [below right,inner sep=2mm] {\textbf{\tikzlastnode}}
+    }
+}
+
+\newcommand{\goal}[2]{
+    \node [goal] (#1) {#2};
+}
+
+\newcommand{\strategy}[2]{
+    \node [strategy] (#1) {#2};
+}
+
+\newcommand{\context}[2]{
+    \node [context] (#1) {#2};
+}
+
+\newcommand{\assumption}[2]{
+    \node [assumption] (#1) {#2};
+}
